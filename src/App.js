@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import HeaderComponent from "./Components/HeaderComponent";
+import Home from "./Components/Pages/Home";
+import Category from "./Components/Pages/Category";
+import Product from "./Components/Pages/Product";
+import Whislist from "./Components/Pages/Whislist";
+import Cart from "./Components/Pages/Cart";
+import CartComponent from "./Components/CartComponent";
+// import WishlistComponent from "./Components/CartComponent";
+
+import { useState } from "react";
 
 function App() {
+  const [open, setOpen] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <HeaderComponent setOpen={setOpen} />
+      <CartComponent setOpen={setOpen} />
+      {/* <WishlistComponent setOpen={setOpen} /> */}
+      <div className="pt-20">
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="category/:id" element={<Category />} />
+          <Route path="product/:id" element={<Product />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="whishlist" element={<Whislist />} />
+        </Routes>
+      </div>
     </div>
   );
 }
