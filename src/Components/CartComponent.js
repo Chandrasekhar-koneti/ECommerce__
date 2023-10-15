@@ -1,10 +1,10 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-export default function CartComponent({ open, setOpen }) {
+export default function CartComponent({ openCart, setOpenCart }) {
   return (
-    <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+    <Transition.Root show={openCart} as={Fragment}>
+      <Dialog as="div" className="relative z-10" onClose={setOpenCart}>
         <div className="fixed inset-0 overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
@@ -28,7 +28,7 @@ export default function CartComponent({ open, setOpen }) {
                           <button
                             type="button"
                             className="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                            onClick={() => setOpen(false)}
+                            onClick={() => setOpenCart(false)}
                           >
                             <span className="absolute -inset-2.5" />
                             <span className="sr-only">Close panel</span>x

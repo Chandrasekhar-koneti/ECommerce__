@@ -2,7 +2,7 @@ import React from "react";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import Nav from "./Nav";
 import { Link } from "react-router-dom";
-const HeaderComponent = ({ setOpen }) => {
+const HeaderComponent = ({ setOpenCart, setOpenWishlist }) => {
   return (
     <div className="h-14 bg-blue-700 fixed w-full shadow-lg">
       <header className="flex h-14 max-w-7xl mx-auto justify-around items-center">
@@ -16,7 +16,7 @@ const HeaderComponent = ({ setOpen }) => {
 
         {/* nav right text */}
 
-        <Nav setOpen={setOpen} />
+        <Nav setOpenCart={setOpenCart} setOpenWishlist={setOpenWishlist} />
       </header>
     </div>
   );

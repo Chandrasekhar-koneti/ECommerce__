@@ -7,17 +7,24 @@ import Product from "./Components/Pages/Product";
 import Whislist from "./Components/Pages/Whislist";
 import Cart from "./Components/Pages/Cart";
 import CartComponent from "./Components/CartComponent";
-// import WishlistComponent from "./Components/CartComponent";
+import WishlistComponent from "./Components/CartComponent";
 
 import { useState } from "react";
 
 function App() {
-  const [open, setOpen] = useState(true);
+  const [openCart, setOpenCart] = useState(false);
+  const [openWishlist, setOpenWishlist] = useState(false);
   return (
     <div>
-      <HeaderComponent setOpen={setOpen} />
-      <CartComponent setOpen={setOpen} />
-      {/* <WishlistComponent setOpen={setOpen} /> */}
+      <HeaderComponent
+        setOpenCart={setOpenCart}
+        setOpenWishlist={setOpenWishlist}
+      />
+      <CartComponent openCart={openCart} setOpenCart={setOpenCart} />
+      <WishlistComponent
+        openWishlist={openWishlist}
+        setOpenWishlist={setOpenWishlist}
+      />
       <div className="pt-20">
         <Routes>
           <Route index element={<Home />} />

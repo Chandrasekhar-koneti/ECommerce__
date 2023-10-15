@@ -3,7 +3,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { Link } from "react-router-dom";
 
-const Nav = ({ setOpen }) => {
+const Nav = ({ setOpenCart, setOpenWishlist }) => {
   const [categories, setCategories] = useState([]);
   let apiUrl = "https://fakestoreapi.com/products/categories";
   async function getAllCategories() {
@@ -28,11 +28,15 @@ const Nav = ({ setOpen }) => {
 
       <ShoppingCartOutlinedIcon
         onClick={() => {
-          setOpen(true);
+          setOpenCart(true);
         }}
       />
 
-      <FavoriteBorderOutlinedIcon />
+      <FavoriteBorderOutlinedIcon
+        onClick={() => {
+          setOpenWishlist(true);
+        }}
+      />
     </div>
   );
 };
