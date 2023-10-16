@@ -5,8 +5,25 @@ import toast from "react-hot-toast";
 const AppProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   let addProductsToCart = (product) => {
-    setCartItems([...cartItems, product]);
+    //   setCartItems([...cartItems, product]);
+    const exisistingProduct = cartItems.find((p) => p.id === product.id);
+    if (exisistingProduct) {
+      const updatedCart = cartItems.map((p) =>
+        p.id === product.id ? { ...p, quantity: +p.quantity + 1 } : p
+      );
+      setCartItems(updatedCart);
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
     toast.success("Product Added Sucessfully");
+  };
+
+  let handleQuantityChange = (productId, newQuantity) => {
+    const updatedCart = cartItems.map((product) =>
+      product.id === productId ? { ...product, quantity: newQuantity } : product
+    );
+    setCartItems(updatedCart);
+    toast.success("Cart Item is Updated");
   };
 
   let removeProductsFromCart = (product) => {
@@ -18,7 +35,12 @@ const AppProvider = ({ children }) => {
   };
   return (
     <AppContext.Provider
-      value={{ cartItems, addProductsToCart, removeProductsFromCart }}
+      value={{
+        cartItems,
+        addProductsToCart,
+        removeProductsFromCart,
+        handleQuantityChange,
+      }}
     >
       {children}
     </AppContext.Provider>
