@@ -22,7 +22,7 @@ export default function WishlistComponent({ openWishlist, setOpenWishlist }) {
                     <div className="px-4 sm:px-6">
                       <div className="flex items-start justify-between">
                         <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">
-                          Cart
+                          Wishlist
                         </Dialog.Title>
                         <div className="ml-3 flex h-7 items-center">
                           <button

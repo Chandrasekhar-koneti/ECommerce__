@@ -7,9 +7,9 @@ import Product from "./Components/Pages/Product";
 import Whislist from "./Components/Pages/Whislist";
 import Cart from "./Components/Pages/Cart";
 import CartComponent from "./Components/CartComponent";
-import WishlistComponent from "./Components/CartComponent";
 
 import { useState } from "react";
+import WishlistComponent from "./Components/WishlistComponent";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
@@ -25,6 +25,7 @@ function App() {
         openWishlist={openWishlist}
         setOpenWishlist={setOpenWishlist}
       />
+
       <div className="pt-20">
         <Routes>
           <Route index element={<Home />} />
