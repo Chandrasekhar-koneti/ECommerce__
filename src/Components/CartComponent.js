@@ -1,7 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import AppContext from "../context/AppContext/AppContext";
+import ProductCard from "./ProductCard";
+import CartProduct from "./CartProduct";
+import emptycart from "../Components/Pages/images/emptycart.png";
 
 export default function CartComponent({ openCart, setOpenCart }) {
+  let appContext = useContext(AppContext);
   return (
     <Transition.Root show={openCart} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpenCart}>
@@ -36,7 +41,28 @@ export default function CartComponent({ openCart, setOpenCart }) {
                         </div>
                       </div>
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6"></div>
+                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                      {appContext.cartItems.length < 1 ? (
+                        <>
+                          <img
+                            src={emptycart}
+                            alt="cart is empty"
+                            className="w-full"
+                          />
+                          <p className="text-center">
+                            "No Products In The Cart"
+                          </p>
+                        </>
+                      ) : (
+                        appContext.cartItems.map((product) => {
+                          return (
+                            <>
+                              <CartProduct product={product} />
+                            </>
+                          );
+                        })
+                      )}
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

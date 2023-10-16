@@ -10,12 +10,14 @@ import CartComponent from "./Components/CartComponent";
 
 import { useState } from "react";
 import WishlistComponent from "./Components/WishlistComponent";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   return (
     <div>
+      <Toaster />
       <HeaderComponent
         setOpenCart={setOpenCart}
         setOpenWishlist={setOpenWishlist}

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import AppContext from "../../context/AppContext/AppContext";
 
 const Product = () => {
+  let { addProductsToCart } = useContext(AppContext);
   const [product, setProduct] = useState({});
   const [Loading, setLoading] = useState(true);
   let { id } = useParams();
@@ -33,7 +35,12 @@ const Product = () => {
         </div>
         <div className="flex justify-between items-center mt-6">
           <h3 className="text-lg mt-4">Rating:{product?.rating?.rate}</h3>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-sm">
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded-sm"
+            onClick={() => {
+              addProductsToCart(product);
+            }}
+          >
             Add To Cart
           </button>
         </div>
