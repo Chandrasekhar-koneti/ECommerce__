@@ -36,12 +36,16 @@ const Product = () => {
           <span className="capitalize bg-blue-400">{product.category}</span>
         </div>
         <div className="flex justify-between items-center mt-6">
-          <h3 className="text-lg mt-4">Rating:{product?.rating?.rate}</h3>
-          <FavoriteBorderOutlinedIcon
-            onClick={() => {
-              addProductsToWishlist(product);
-            }}
-          />
+          <h3 className="text-lg mt-4">
+            Rating:{product?.rating?.rate}{" "}
+            <FavoriteBorderOutlinedIcon
+              className="ml-3 text-red-500"
+              onClick={() => {
+                addProductsToWishlist(product);
+              }}
+            />
+          </h3>
+
           <button
             className="bg-blue-600 text-white px-4 py-2 rounded-sm"
             onClick={() => {
