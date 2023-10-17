@@ -4,6 +4,8 @@ import toast from "react-hot-toast";
 
 const AppProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
+
   let addProductsToCart = (product) => {
     //   setCartItems([...cartItems, product]);
     const exisistingProduct = cartItems.find((p) => p.id === product.id);
@@ -33,13 +35,47 @@ const AppProvider = ({ children }) => {
     setCartItems(updatedCartItems);
     toast.success("Item Removed From Cart");
   };
+
+  let addProductsToWishlist = (product) => {
+    //   setCartItems([...cartItems, product]);
+    const exisistingProduct = wishlistItems.find((p) => p.id === product.id);
+    if (exisistingProduct) {
+      const updatedWishlist = wishlistItems.map((p) =>
+        p.id === product.id ? { ...p, quantity: +p.quantity + 1 } : p
+      );
+      setWishlistItems(updatedWishlist);
+    } else {
+      setWishlistItems([...wishlistItems, { ...product, quantity: 1 }]);
+    }
+    toast.success("Product Added to WishList");
+  };
+
+  let removeProductsFromWishlist = (product) => {
+    let updatedWishlistItems = wishlistItems.filter((item) => {
+      return item.id !== product.id;
+    });
+    setWishlistItems(updatedWishlistItems);
+    toast.success("Item Removed From WishList");
+  };
+  // let handleWishlistQuantityChange = (productId) => {
+  //   const updatedWishlist = wishlistItems.map((product) =>
+  //     product.id === productId
+  //       ? toast.success("Product already there")
+  //       : product
+  //   );
+  //   setWishlistItems(updatedWishlist);
+  // };
   return (
     <AppContext.Provider
       value={{
         cartItems,
+        wishlistItems,
         addProductsToCart,
         removeProductsFromCart,
         handleQuantityChange,
+        addProductsToWishlist,
+        removeProductsFromWishlist,
+        // handleWishlistQuantityChange,
       }}
     >
       {children}

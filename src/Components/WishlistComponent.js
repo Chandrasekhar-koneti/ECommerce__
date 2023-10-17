@@ -1,7 +1,10 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import AppContext from "../context/AppContext/AppContext";
+import WishlistProduct from "./WishlistProduct";
 
 export default function WishlistComponent({ openWishlist, setOpenWishlist }) {
+  let appContext = useContext(AppContext);
   return (
     <Transition.Root show={openWishlist} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpenWishlist}>
@@ -36,7 +39,15 @@ export default function WishlistComponent({ openWishlist, setOpenWishlist }) {
                         </div>
                       </div>
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6"></div>
+                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                      {appContext.wishlistItems.map((product) => {
+                        return (
+                          <>
+                            <WishlistProduct product={product} />
+                          </>
+                        );
+                      })}
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

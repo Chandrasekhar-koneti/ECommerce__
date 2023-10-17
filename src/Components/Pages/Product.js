@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AppContext from "../../context/AppContext/AppContext";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 
 const Product = () => {
+  let { addProductsToWishlist } = useContext(AppContext);
   let { addProductsToCart } = useContext(AppContext);
   const [product, setProduct] = useState({});
   const [Loading, setLoading] = useState(true);
@@ -35,6 +37,11 @@ const Product = () => {
         </div>
         <div className="flex justify-between items-center mt-6">
           <h3 className="text-lg mt-4">Rating:{product?.rating?.rate}</h3>
+          <FavoriteBorderOutlinedIcon
+            onClick={() => {
+              addProductsToWishlist(product);
+            }}
+          />
           <button
             className="bg-blue-600 text-white px-4 py-2 rounded-sm"
             onClick={() => {
